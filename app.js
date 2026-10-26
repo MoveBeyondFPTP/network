@@ -1029,7 +1029,8 @@ function exportCsv() {
   const head = ['First name', 'Last name', 'Title', 'Company', 'Email', 'Phone', 'Website', 'Address', 'Portfolios', 'Notes', 'Added', 'Updated'];
   const rows = S.contacts.map((c) => [
     c.first_name, c.last_name, c.title, c.company, c.email, c.phone, c.website, c.address,
-    (c.tags || []).map((id) => tagById(id)?.name).filter(Boolean).join('; '),
+    // Commas so Airtable turns each portfolio into its own multiple-select option
+    (c.tags || []).map((id) => tagById(id)?.name).filter(Boolean).join(', '),
     notesFor(c.id).map((n) => `${fmtDate(n.created_at)}: ${n.body}`).join(' | '),
     c.created_at, c.updated_at,
   ].map(cell).join(','));
