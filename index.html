@@ -24,6 +24,10 @@
   </div>
   <noscript>This app needs JavaScript turned on.</noscript>
   <script src="config.js"></script>
+  <script>
+    // config.js only needs Firebase's own "const firebaseConfig = {...}" block.
+    if (!window.CRM_CONFIG && typeof firebaseConfig !== 'undefined') window.CRM_CONFIG = { firebase: firebaseConfig };
+  </script>
   <script type="module" src="app.js"></script>
 </body>
 </html>
